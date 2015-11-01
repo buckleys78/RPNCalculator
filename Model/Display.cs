@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace RPNCalculator {
     class Display {
+        public string Buffer { get; set; }
+
         public int FixedDecimalDigitsToDisplay { get; set; }
+
+        public bool HasDecimalPoint() {
+            return Buffer.Contains(".");
+        }
+
         public bool IsFixedDecimal { get; set; }
 
         public string ValueToShow(double rawValue) {
@@ -15,6 +22,19 @@ namespace RPNCalculator {
             } else {
                 return rawValue.ToString();
             }
+        }
+
+        // Methods/Functions
+        public string AddDigitToBuffer(string digit) {
+            if (digit == "." && HasDecimalPoint()) {
+                return Buffer;
+            } else {
+                return Buffer += digit;
+            }
+        }
+
+        public void ClearBuffer() {
+            Buffer = "";
         }
 
     }
