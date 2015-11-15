@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RPNCalculator"
         xmlns:Model="clr-namespace:RPNCalculator.Model" x:Class="RPNCalculator.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="579">
+        Title="My Calculator" Height="350" Width="579">
     <Grid>
         <TextBlock x:Name="displayField" HorizontalAlignment="Left" Margin="19,17,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="43" Width="367" FontSize="24" Background="#FFC0DEB4">
             <TextBlock.DataContext>
@@ -37,7 +37,15 @@
         <Button x:Name="btnPowerOfX" Content="y^x" HorizontalAlignment="Left" Height="43" Margin="197,65,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnMultiply_Click"/>
         <Button x:Name="btnReciprocalOfX" Content="1/x" HorizontalAlignment="Left" Height="43" Margin="125,65,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnMultiply_Click"/>
         <Button x:Name="btnSwitchXandY" Content="x&gt;&lt;y" HorizontalAlignment="Left" Margin="29,124,0,0" VerticalAlignment="Top" Width="65" Height="43" Click="btnSwitchXandY_Click" FontSize="21.333"/>
-        <ListBox x:Name="listboxMemoryStack" HorizontalAlignment="Left" Height="127" Margin="10,186,0,0" VerticalAlignment="Top" Width="100"/>
+        <ListBox x:Name="lboxMemoryStack" HorizontalAlignment="Left" Height="127" Margin="10,186,0,0" VerticalAlignment="Top" Width="100">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </Grid>
 </Window>

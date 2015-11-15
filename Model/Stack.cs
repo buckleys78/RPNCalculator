@@ -5,17 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RPNCalculator.Model {
-    class Stack {
+    class StackOfValues {
         private Stack<double> valuesStack;
 
-        public Stack() {
+        public StackOfValues() {
             valuesStack = new Stack<double>();
+        }
+
+        public List<string> ListOfStackValues() {
+            return new List<double>(valuesStack).Select(x => x.ToString()).ToList();
         }
 
         public int NumberOfValues() {
             return valuesStack.Count;
         }
-
 
         public double[] PopTopTwoValues () {
             double[] pair = { 0, 0 };

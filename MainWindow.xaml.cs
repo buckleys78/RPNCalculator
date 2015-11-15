@@ -27,11 +27,11 @@ namespace RPNCalculator {
             CalculatorMode.CurrentMode = CalcMode.RPN;
             
             InitializeComponent();
-
             btnEnter.Visibility = Visibility.Visible;
             btnEqualSign.Visibility = Visibility.Hidden;
 
-            MemoryStack = new Stack();
+            MemoryStack = new StackOfValues();
+            
             CalculatorDisplay = new Display();
             UpdateDisplay();
         }
@@ -47,7 +47,7 @@ namespace RPNCalculator {
 
         private Display CalculatorDisplay { get; set; }
         private CalculationMode CalculatorMode { get; set; }
-        private Stack MemoryStack { get; set; }
+        private StackOfValues MemoryStack { get; set; }
 
         private void UpdateDisplay(double? newDisplayValue = null) {
             if (newDisplayValue.HasValue) {
@@ -55,6 +55,8 @@ namespace RPNCalculator {
             } else {
                 displayField.Text = CalculatorDisplay.Buffer;
             }
+
+            lboxMemoryStack.ItemsSource = MemoryStack.ListOfStackValues();
         }
 
         // Operator Keys
@@ -181,6 +183,7 @@ namespace RPNCalculator {
 
         private void btnEnter_Click(object sender, RoutedEventArgs e) {
             CalculatorDisplay.PushToStack(MemoryStack);
+            UpdateDisplay();
         }
 
         // Calculation Mode
@@ -207,7 +210,5 @@ namespace RPNCalculator {
         private void rbSelectTI_Checked(object sender, RoutedEventArgs e) {
             UpdateCalculationMode();
         }
-
-
     }
 }

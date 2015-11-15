@@ -49,7 +49,7 @@ namespace RPNCalculator.Model {
             }
         }
 
-        public void PushToStack(Stack memStack) {
+        public void PushToStack(StackOfValues memStack) {
             double displayValue;
             if (Double.TryParse(Buffer, out displayValue)) {
                 memStack.Push(displayValue);
