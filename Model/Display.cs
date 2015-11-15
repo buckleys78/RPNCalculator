@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPNCalculator.Model {
     class Display {
+        // private string defaultDisplay = "0.";
         public string Buffer { get; set; }
 
         public int FixedDecimalDigitsToDisplay { get; set; }
@@ -24,6 +25,11 @@ namespace RPNCalculator.Model {
             }
         }
 
+        // Constructors
+        public Display() {
+            //Buffer = defaultDisplay;
+        }
+
         // Methods/Functions
         public string AddDigitToBuffer(string digit) {
             if (digit == "." && HasDecimalPoint()) {
@@ -37,5 +43,18 @@ namespace RPNCalculator.Model {
             Buffer = "";
         }
 
+        public void DeleteLastDigit() {
+            if (Buffer.Length > 0) {
+                Buffer = Buffer.Substring(0, Buffer.Length - 1);
+            }
+        }
+
+        public void PushToStack(Stack memStack) {
+            double displayValue;
+            if (Double.TryParse(Buffer, out displayValue)) {
+                memStack.Push(displayValue);
+            }
+            ClearBuffer();
+        }
     }
 }

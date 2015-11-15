@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\CalculationMode.cs" />
+    <Compile Include="View\KeyListener.cs" />
+    <Compile Include="View\NumericKeys\NumericKeys.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -70,6 +73,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\NumericDigitKey.cs" />
     <Compile Include="Model\Operators.cs" />
     <Compile Include="Model\Stack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -100,7 +104,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controller\" />
-    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,32 +1,43 @@
-﻿<Window x:Class="RPNCalculator.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPNCalculator"
+        xmlns:Model="clr-namespace:RPNCalculator.Model" x:Class="RPNCalculator.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="579">
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="19,17,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="43" Width="367" FontSize="24" Background="#FFC0DEB4"/>
-        <RadioButton x:Name="rbSelectTI" Content="Use '='" HorizontalAlignment="Left" Margin="476,38,0,0" VerticalAlignment="Top" IsChecked="True" GroupName="InputMode"/>
-        <RadioButton x:Name="rbSelectRPN" Content="RPN" HorizontalAlignment="Left" Margin="476,20,0,0" VerticalAlignment="Top" GroupName="InputMode"/>
-        <Button x:Name="btnEnter" Content="Enter" HorizontalAlignment="Left" Height="101" Margin="208,186,0,0" VerticalAlignment="Top" Width="40"/>
-        <Button x:Name="btnNmbr7" Content="7" HorizontalAlignment="Left" Height="43" Margin="267,65,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnNmbr8" Content="8" HorizontalAlignment="Left" Height="43" Margin="335,65,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnNmbr9" Content="9" HorizontalAlignment="Left" Height="43" Margin="406,65,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnNmbr4" Content="4" HorizontalAlignment="Left" Height="43" Margin="267,124,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnNmbr5" Content="5" HorizontalAlignment="Left" Height="43" Margin="335,124,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnNmbr6" Content="6" HorizontalAlignment="Left" Height="43" Margin="406,124,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnNmbr1" Content="1" HorizontalAlignment="Left" Height="43" Margin="267,186,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnNmbr2" Content="2" HorizontalAlignment="Left" Height="43" Margin="335,186,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnNmbr3" Content="3" HorizontalAlignment="Left" Height="43" Margin="406,186,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnNmbr0" Content="0" HorizontalAlignment="Left" Height="43" Margin="267,244,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnDecimalPoint" Content="." HorizontalAlignment="Left" Height="43" Margin="335,244,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnDivide" Content="/" HorizontalAlignment="Left" Height="43" Margin="472,65,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnMultiply" Content="x" HorizontalAlignment="Left" Height="43" Margin="472,124,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnSubtract" Content="-" HorizontalAlignment="Left" Height="43" Margin="472,186,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnAdd" Content="+" HorizontalAlignment="Left" Height="43" Margin="472,244,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
-        <Button x:Name="btnEqualSign" Content="=" HorizontalAlignment="Left" Height="43" Margin="406,244,0,0" VerticalAlignment="Top" Width="51" FontSize="32"/>
+        <TextBlock x:Name="displayField" HorizontalAlignment="Left" Margin="19,17,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="43" Width="367" FontSize="24" Background="#FFC0DEB4">
+            <TextBlock.DataContext>
+                <Model:Display/>
+            </TextBlock.DataContext>
+        </TextBlock>
+        <RadioButton x:Name="rbSelectTI" Content="Use '='" HorizontalAlignment="Left" Margin="476,38,0,0" VerticalAlignment="Top" GroupName="InputMode" Checked="rbSelectTI_Checked"/>
+        <RadioButton x:Name="rbSelectRPN" Content="RPN" HorizontalAlignment="Left" Margin="476,20,0,0" VerticalAlignment="Top" GroupName="InputMode" IsChecked="True" Checked="rbSelectRPN_Checked"/>
+        <Button x:Name="btnEnter" Content="Enter" HorizontalAlignment="Left" Height="101" Margin="208,186,0,0" VerticalAlignment="Top" Width="40" Click="btnEnter_Click"/>
+        <Button x:Name="btnNmbr7" Content="7" HorizontalAlignment="Left" Height="43" Margin="267,65,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnNmbr7_Click"/>
+        <Button x:Name="btnNmbr8" Content="8" HorizontalAlignment="Left" Height="43" Margin="335,65,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnNmbr8_Click"/>
+        <Button x:Name="btnNmbr9" Content="9" HorizontalAlignment="Left" Height="43" Margin="406,65,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnNmbr9_Click"/>
+        <Button x:Name="btnNmbr4" Content="4" HorizontalAlignment="Left" Height="43" Margin="267,124,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnNmbr4_Click"/>
+        <Button x:Name="btnNmbr5" Content="5" HorizontalAlignment="Left" Height="43" Margin="335,124,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnNmbr5_Click"/>
+        <Button x:Name="btnNmbr6" Content="6" HorizontalAlignment="Left" Height="43" Margin="406,124,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnNmbr6_Click"/>
+        <Button x:Name="btnNmbr1" Content="1" HorizontalAlignment="Left" Height="43" Margin="267,186,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnNmbr1_Click"/>
+        <Button x:Name="btnNmbr2" Content="2" HorizontalAlignment="Left" Height="43" Margin="335,186,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnNmbr2_Click"/>
+        <Button x:Name="btnNmbr3" Content="3" HorizontalAlignment="Left" Height="43" Margin="406,186,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnNmbr3_Click"/>
+        <Button x:Name="btnNmbr0" Content="0" HorizontalAlignment="Left" Height="43" Margin="267,244,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnNmbr0_Click"/>
+        <Button x:Name="btnDecimalPoint" Content="." HorizontalAlignment="Left" Height="43" Margin="335,244,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnDecimalPoint_Click"/>
+        <Button x:Name="btnDivide" Content="/" HorizontalAlignment="Left" Height="43" Margin="472,65,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnDivide_Click"/>
+        <Button x:Name="btnMultiply" Content="x" HorizontalAlignment="Left" Height="43" Margin="472,124,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnMultiply_Click"/>
+        <Button x:Name="btnSubtract" Content="-" HorizontalAlignment="Left" Height="43" Margin="472,186,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnSubtract_Click"/>
+        <Button x:Name="btnAdd" Content="+" HorizontalAlignment="Left" Height="43" Margin="472,244,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnAdd_Click"/>
+        <Button x:Name="btnEqualSign" Content="=" HorizontalAlignment="Left" Height="43" Margin="406,244,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnEqualSign_Click"/>
+        <Button x:Name="btnClearDisplay" Content="CLR" HorizontalAlignment="Left" Margin="125,186,0,0" VerticalAlignment="Top" Width="65" Height="43" Click="btnClearDisplay_Click" FontWeight="Bold" FontSize="21.333"/>
+        <Button x:Name="btnBackSpace" Content="BkSp" HorizontalAlignment="Left" Margin="125,244,0,0" VerticalAlignment="Top" Width="65" Height="43" Click="btnBackSpace_Click" FontWeight="Bold" FontSize="21.333"/>
+        <Button x:Name="btnPowerOfX" Content="y^x" HorizontalAlignment="Left" Height="43" Margin="197,65,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnMultiply_Click"/>
+        <Button x:Name="btnReciprocalOfX" Content="1/x" HorizontalAlignment="Left" Height="43" Margin="125,65,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnMultiply_Click"/>
+        <Button x:Name="btnSwitchXandY" Content="x&gt;&lt;y" HorizontalAlignment="Left" Margin="29,124,0,0" VerticalAlignment="Top" Width="65" Height="43" Click="btnSwitchXandY_Click" FontSize="21.333"/>
+        <ListBox x:Name="listboxMemoryStack" HorizontalAlignment="Left" Height="127" Margin="10,186,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

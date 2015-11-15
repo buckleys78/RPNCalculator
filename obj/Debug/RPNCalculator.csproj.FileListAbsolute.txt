@@ -12,3 +12,4 @@ E:\Learning New Stuff\LyndaDotCom\CSharp\RPNCalculator\RPNCalculator\obj\Debug\R
 E:\Learning New Stuff\LyndaDotCom\CSharp\RPNCalculator\RPNCalculator\obj\Debug\RPNCalculator.csproj.GenerateResource.Cache
 E:\Learning New Stuff\LyndaDotCom\CSharp\RPNCalculator\RPNCalculator\obj\Debug\RPNCalculator.exe
 E:\Learning New Stuff\LyndaDotCom\CSharp\RPNCalculator\RPNCalculator\obj\Debug\RPNCalculator.pdb
+E:\Learning New Stuff\LyndaDotCom\CSharp\RPNCalculator\RPNCalculator\obj\Debug\GeneratedInternalTypeHelper.g.cs
