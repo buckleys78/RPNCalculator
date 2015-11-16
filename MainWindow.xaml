@@ -15,7 +15,11 @@
         </TextBlock>
         <RadioButton x:Name="rbSelectTI" Content="Use '='" HorizontalAlignment="Left" Margin="476,38,0,0" VerticalAlignment="Top" GroupName="InputMode" Checked="rbSelectTI_Checked"/>
         <RadioButton x:Name="rbSelectRPN" Content="RPN" HorizontalAlignment="Left" Margin="476,20,0,0" VerticalAlignment="Top" GroupName="InputMode" IsChecked="True" Checked="rbSelectRPN_Checked"/>
-        <Button x:Name="btnEnter" Content="Enter" HorizontalAlignment="Left" Height="101" Margin="208,186,0,0" VerticalAlignment="Top" Width="40" Click="btnEnter_Click"/>
+        <Button x:Name="btnEnter" HorizontalAlignment="Left" Height="101" Margin="197,186,0,0" VerticalAlignment="Top" Width="51"
+                IsEnabled="{Binding ElementName=rbSelectRPN, Path=IsChecked}" 
+                Click="btnEnter_Click">
+            <TextBlock Text="ENTER" Width="9" TextWrapping="Wrap" FontSize="16"></TextBlock>
+        </Button>
         <Button x:Name="btnNmbr7" Content="7" HorizontalAlignment="Left" Height="43" Margin="267,65,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnNmbr7_Click"/>
         <Button x:Name="btnNmbr8" Content="8" HorizontalAlignment="Left" Height="43" Margin="335,65,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnNmbr8_Click"/>
         <Button x:Name="btnNmbr9" Content="9" HorizontalAlignment="Left" Height="43" Margin="406,65,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnNmbr9_Click"/>
@@ -31,12 +35,14 @@
         <Button x:Name="btnMultiply" Content="x" HorizontalAlignment="Left" Height="43" Margin="472,124,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnMultiply_Click"/>
         <Button x:Name="btnSubtract" Content="-" HorizontalAlignment="Left" Height="43" Margin="472,186,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnSubtract_Click"/>
         <Button x:Name="btnAdd" Content="+" HorizontalAlignment="Left" Height="43" Margin="472,244,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnAdd_Click"/>
-        <Button x:Name="btnEqualSign" Content="=" HorizontalAlignment="Left" Height="43" Margin="406,244,0,0" VerticalAlignment="Top" Width="51" FontSize="32" Click="btnEqualSign_Click"/>
-        <Button x:Name="btnClearDisplay" Content="CLR" HorizontalAlignment="Left" Margin="125,186,0,0" VerticalAlignment="Top" Width="65" Height="43" Click="btnClearDisplay_Click" FontWeight="Bold" FontSize="21.333"/>
-        <Button x:Name="btnBackSpace" Content="BkSp" HorizontalAlignment="Left" Margin="125,244,0,0" VerticalAlignment="Top" Width="65" Height="43" Click="btnBackSpace_Click" FontWeight="Bold" FontSize="21.333"/>
-        <Button x:Name="btnPowerOfX" Content="y^x" HorizontalAlignment="Left" Height="43" Margin="197,65,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnMultiply_Click"/>
+        <Button x:Name="btnEqualSign" Content="=" HorizontalAlignment="Left" Height="43" Margin="406,244,0,0" VerticalAlignment="Top" Width="51" FontSize="32" 
+                IsEnabled="{Binding ElementName=rbSelectTI, Path=IsChecked}"
+                Click="btnEqualSign_Click"/>
+        <Button x:Name="btnClearDisplay" Content="CLR" HorizontalAlignment="Left" Margin="115,186,0,0" VerticalAlignment="Top" Width="65" Height="43" Click="btnClearDisplay_Click" FontWeight="Bold" FontSize="21.333"/>
+        <Button x:Name="btnBackSpace" Content="←" HorizontalAlignment="Left" Margin="115,244,0,0" VerticalAlignment="Top" Width="65" Height="43" Click="btnBackSpace_Click" FontWeight="Bold" FontSize="32" FontFamily="Arial Black"/>
+        <Button x:Name="btnPowerOfX" Content="y˟" HorizontalAlignment="Left" Height="43" Margin="59,65,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnMultiply_Click"/>
         <Button x:Name="btnReciprocalOfX" Content="1/x" HorizontalAlignment="Left" Height="43" Margin="125,65,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnMultiply_Click"/>
-        <Button x:Name="btnSwitchXandY" Content="x&gt;&lt;y" HorizontalAlignment="Left" Margin="29,124,0,0" VerticalAlignment="Top" Width="65" Height="43" Click="btnSwitchXandY_Click" FontSize="21.333"/>
+        <Button x:Name="btnSwitchXandY" Content="x&gt;&lt;y" HorizontalAlignment="Left" Margin="29,124,0,0" VerticalAlignment="Top" Width="65" Height="43" Click="btnSwitchXandY_Click" FontSize="21.333" IsEnabled="False"/>
         <ListBox x:Name="lboxMemoryStack" HorizontalAlignment="Left" Height="127" Margin="10,186,0,0" VerticalAlignment="Top" Width="100">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -46,6 +52,8 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button x:Name="btnChangeSign" Content="±" HorizontalAlignment="Left" Height="43" Margin="197,65,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnMultiply_Click" IsEnabled="False"/>
+        <Button x:Name="btnExponent" Content="EEX" HorizontalAlignment="Left" Height="43" Margin="197,123,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnMultiply_Click" IsEnabled="False"/>
 
     </Grid>
 </Window>

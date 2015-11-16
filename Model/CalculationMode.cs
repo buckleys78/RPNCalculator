@@ -15,8 +15,8 @@ namespace RPNCalculator.Model {
         
         public CalcMode CurrentMode { get; set; }
 
-        public CalculationMode () {
-            CurrentMode = CalcMode.RPN;
+        public CalculationMode (CalcMode modeOnStartup) {
+            CurrentMode = modeOnStartup;
         }
     }
 }

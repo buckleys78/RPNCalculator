@@ -22,13 +22,8 @@ namespace RPNCalculator {
     public partial class MainWindow : Window {
         
         public MainWindow() {
-            //InitializeCalculationMode();
-            CalculatorMode = new CalculationMode();
-            CalculatorMode.CurrentMode = CalcMode.RPN;
-            
             InitializeComponent();
-            btnEnter.Visibility = Visibility.Visible;
-            btnEqualSign.Visibility = Visibility.Hidden;
+            InitializeCalculationMode();
 
             MemoryStack = new StackOfValues();
             
@@ -37,11 +32,9 @@ namespace RPNCalculator {
         }
 
         private void InitializeCalculationMode() {
-            CalculatorMode = new CalculationMode();
-            //rbSelectRPN.IsChecked = CalculatorMode.CurrentMode == CalcMode.RPN;
-            //rbSelectTI.IsChecked = !rbSelectRPN.IsChecked;
-            //rbSelectRPN.IsChecked = true;
-            //rbSelectTI.IsChecked = false;
+            CalculatorMode = new CalculationMode(modeOnStartup: CalcMode.RPN);
+            rbSelectRPN.IsChecked = CalculatorMode.CurrentMode == CalcMode.RPN;
+            rbSelectTI.IsChecked = !rbSelectRPN.IsChecked;
             UpdateCalculationMode();
         }
 
@@ -188,19 +181,18 @@ namespace RPNCalculator {
 
         // Calculation Mode
         private void UpdateCalculationMode() {
-            /*if (!rbSelectRPN.HasContent) {
-                rbSelectRPN.IsChecked = true;
+
+            if (rbSelectRPN != null && CalculatorMode != null && btnEnter != null && btnEqualSign != null) {
+                if (rbSelectRPN.IsChecked == true) {
+                    CalculatorMode.CurrentMode = CalcMode.RPN;
+                    btnEnter.Visibility = System.Windows.Visibility.Visible;
+                    btnEqualSign.Visibility = System.Windows.Visibility.Hidden;
+                } else {
+                    CalculatorMode.CurrentMode = CalcMode.TI;
+                    btnEnter.Visibility = System.Windows.Visibility.Hidden;
+                    btnEqualSign.Visibility = System.Windows.Visibility.Visible;
+                }
             }
-            if (rbSelectRPN.IsChecked == true) {
-                CalculatorMode.CurrentMode = CalcMode.RPN;
-                btnEnter.Visibility = System.Windows.Visibility.Visible;
-                btnEqualSign.Visibility = System.Windows.Visibility.Hidden;
-            } else {
-                CalculatorMode.CurrentMode = CalcMode.TI;
-                btnEnter.Visibility = System.Windows.Visibility.Hidden;
-                btnEqualSign.Visibility = System.Windows.Visibility.Visible;
-            }
-            */
         }
 
         private void rbSelectRPN_Checked(object sender, RoutedEventArgs e) {
