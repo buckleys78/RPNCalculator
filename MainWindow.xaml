@@ -9,9 +9,9 @@
         Title="My Calculator" Height="350" Width="579">
     <Grid>
         <TextBlock x:Name="displayField" HorizontalAlignment="Left" Margin="19,17,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="43" Width="367" FontSize="24" Background="#FFC0DEB4">
-            <TextBlock.DataContext>
-                <Model:Display/>
-            </TextBlock.DataContext>
+            <!--<TextBlock.DataContext>
+                <Model:XRegister/>
+            </TextBlock.DataContext>-->
         </TextBlock>
         <RadioButton x:Name="rbSelectTI" Content="Use '='" HorizontalAlignment="Left" Margin="476,38,0,0" VerticalAlignment="Top" GroupName="InputMode" Checked="rbSelectTI_Checked"/>
         <RadioButton x:Name="rbSelectRPN" Content="RPN" HorizontalAlignment="Left" Margin="476,20,0,0" VerticalAlignment="Top" GroupName="InputMode" IsChecked="True" Checked="rbSelectRPN_Checked"/>
@@ -42,7 +42,7 @@
         <Button x:Name="btnBackSpace" Content="←" HorizontalAlignment="Left" Margin="115,244,0,0" VerticalAlignment="Top" Width="65" Height="43" Click="btnBackSpace_Click" FontWeight="Bold" FontSize="32" FontFamily="Arial Black"/>
         <Button x:Name="btnPowerOfX" Content="y˟" HorizontalAlignment="Left" Height="43" Margin="59,65,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnMultiply_Click"/>
         <Button x:Name="btnReciprocalOfX" Content="1/x" HorizontalAlignment="Left" Height="43" Margin="125,65,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnMultiply_Click"/>
-        <Button x:Name="btnSwitchXandY" Content="x&gt;&lt;y" HorizontalAlignment="Left" Margin="29,124,0,0" VerticalAlignment="Top" Width="65" Height="43" Click="btnSwitchXandY_Click" FontSize="21.333" IsEnabled="False"/>
+        <Button x:Name="btnSwitchXandY" Content="x&gt;&lt;y" HorizontalAlignment="Left" Margin="29,124,0,0" VerticalAlignment="Top" Width="65" Height="43" Click="btnSwitchXandY_Click" FontSize="21.333"/>
         <ListBox x:Name="lboxMemoryStack" HorizontalAlignment="Left" Height="127" Margin="10,186,0,0" VerticalAlignment="Top" Width="100">
             <ListBox.ItemTemplate>
                 <DataTemplate>

@@ -22,13 +22,12 @@ namespace RPNCalculator {
     public partial class MainWindow : Window {
         
         public MainWindow() {
+
+            EventManager.RegisterClassHandler(typeof(Window), Keyboard.KeyUpEvent, new KeyEventHandler(keyUp), true);
+            MemoryStack = new Values();
             InitializeComponent();
             InitializeCalculationMode();
-
-            MemoryStack = new StackOfValues();
-            
-            CalculatorDisplay = new Display();
-            UpdateDisplay();
+            UpdateDisplays();
         }
 
         private void InitializeCalculationMode() {
@@ -38,23 +37,55 @@ namespace RPNCalculator {
             UpdateCalculationMode();
         }
 
-        private Display CalculatorDisplay { get; set; }
         private CalculationMode CalculatorMode { get; set; }
-        private StackOfValues MemoryStack { get; set; }
+        private Values MemoryStack { get; set; }
 
-        private void UpdateDisplay(double? newDisplayValue = null) {
-            if (newDisplayValue.HasValue) {
-                displayField.Text = newDisplayValue.ToString();
+        private void UpdateDisplays() {
+            if (MemoryStack.xRegister.BufferIsEmpty()) {
+                displayField.Text = MemoryStack.TopValue().ToString();
             } else {
-                displayField.Text = CalculatorDisplay.Buffer;
+                displayField.Text = MemoryStack.xRegister.NewEntryBuffer;
             }
+            lboxMemoryStack.ItemsSource = MemoryStack.listOfStackedValues();
+        }
 
-            lboxMemoryStack.ItemsSource = MemoryStack.ListOfStackValues();
+        // Keyboard
+        private void keyUp(object sender, KeyEventArgs e) {
+            string digitKey = digitFromKey(e.Key.ToString());
+
+            MessageBox.Show(e.Key.ToString());
+            var isShift = Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift);
+            var isCtrl = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
+            var isAlt = Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt);
+            if (!isShift) {
+                MemoryStack.xRegister.AddDigit(digitKey);
+            } else {
+                switch (e.Key.ToString()) {
+                    case "OemPlus":
+
+                    case "OemMinus":
+
+                    case "OemQuestion":
+
+                    case "OemPeriod":
+
+                    default:
+                        break;
+                }
+            }
+            UpdateDisplays();
+        }
+
+        private string digitFromKey(string keyCode) {
+            string digit = "";
+            if(keyCode.Length == 2 && keyCode.StartsWith("D") && char.IsDigit(keyCode,1)) {
+                digit = keyCode.Substring(keyCode.Length - 1, 1);
+            }
+            return digit;
         }
 
         // Operator Keys
         private void processOperatorButtonClick(object sender) {
-            CalculatorDisplay.PushToStack(MemoryStack);
             var block = sender as Button;
             double result = 0;
             if (block != null) {
@@ -81,7 +112,8 @@ namespace RPNCalculator {
                         break;
                 }
                 MemoryStack.Push(result);
-                UpdateDisplay(result);
+                MemoryStack.xRegister.ClearBuffer();
+                UpdateDisplays();
             }
         }
 
@@ -109,8 +141,8 @@ namespace RPNCalculator {
         private void processNmbrButtonClick(object sender) {
             var block = sender as Button;
             if (block != null) {
-                CalculatorDisplay.AddDigitToBuffer(block.Content.ToString());
-                UpdateDisplay();
+                MemoryStack.xRegister.AddDigit(block.Content.ToString());
+                UpdateDisplays();
             }
         }
 
@@ -161,22 +193,24 @@ namespace RPNCalculator {
         // Stack Manipulation
         private void btnSwitchXandY_Click(object sender, RoutedEventArgs e) {
             MemoryStack.SwitchXandY();
+            UpdateDisplays();
         }
 
         // Display Control
         private void btnClearDisplay_Click(object sender, RoutedEventArgs e) {
-            CalculatorDisplay.ClearBuffer();
-            UpdateDisplay();
+            MemoryStack.xRegister.ClearBuffer();
+            UpdateDisplays();
         }
 
         private void btnBackSpace_Click(object sender, RoutedEventArgs e) {
-            CalculatorDisplay.DeleteLastDigit();
-            UpdateDisplay();
+            MemoryStack.xRegister.DeleteLastDigit();
+            UpdateDisplays();
         }
 
         private void btnEnter_Click(object sender, RoutedEventArgs e) {
-            CalculatorDisplay.PushToStack(MemoryStack);
-            UpdateDisplay();
+            MemoryStack.xRegister.PushBufferUpTheStack();
+            MemoryStack.xRegister.XRegisterIsPlaceholder = true;
+            UpdateDisplays();
         }
 
         // Calculation Mode
