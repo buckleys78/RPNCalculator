@@ -48,7 +48,7 @@ namespace RPNCalculator.Model {
             return pair;
         }
 
-        public double PopTopValue () {
+        public double PopTopValue() {
             double value = 0;
             if (NumberOfValues() > 0) {
                 value = StackedValues.Pop();
@@ -60,7 +60,23 @@ namespace RPNCalculator.Model {
             StackedValues.Push(value);
         }
 
+        public void RollDown() {
+            xRegister.ClearBuffer();
+            if (NumberOfValues() < 2) return;
+            var tempStack = new Stack<double>();
+            var newStack = new Stack<double>();
+            newStack.Push(StackedValues.Pop());
+            while (NumberOfValues() > 0) {
+                tempStack.Push(StackedValues.Pop());
+            }
+            while (tempStack.Count > 0) {
+                newStack.Push(tempStack.Pop());
+            }
+            StackedValues = newStack;
+        }
+
         public void SwitchXandY() {
+            xRegister.ClearBuffer();
             double[] pair = PopTopTwoValues();
             StackedValues.Push(pair[0]);
             StackedValues.Push(pair[1]);

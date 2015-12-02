@@ -200,6 +200,11 @@ namespace RPNCalculator {
             UpdateDisplays();
         }
 
+        private void btnRollDown_Click(object sender, RoutedEventArgs e) {
+            MemoryStack.RollDown();
+            UpdateDisplays();
+        }
+
         // Display Control
         private void btnClearDisplay_Click(object sender, RoutedEventArgs e) {
             MemoryStack.xRegister.ClearBuffer();
@@ -241,6 +246,6 @@ namespace RPNCalculator {
             UpdateCalculationMode();
         }
 
-        
+
     }
 }

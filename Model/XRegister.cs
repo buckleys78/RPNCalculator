@@ -31,13 +31,16 @@ namespace RPNCalculator.Model {
 
         // Methods/Functions
         public void AddDigit(string digit) {
-            char chngSignChar = (char)0x00B1; //   +/- symbol
+            char chngSignChar = (char)0x00B1; //   the +/- symbol
             if (digit.Length != 1) return;
             if (char.IsDigit(digit,0) || (digit == "." && !BufferHasDecimalPoint())) {
                 if (BufferIsEmpty() && !XRegisterIsPlaceholder) {
                     ParentStack.Push(0);
                 }
                 XRegisterIsPlaceholder = false;
+                if (BufferIsEmpty() && digit == ".") {
+                    NewEntryBuffer = "0";
+                }
                 NewEntryBuffer += digit;
                 ValueInX = double.Parse(NewEntryBuffer);
             } else if (digit.CompareTo(chngSignChar.ToString()) == 0) {
