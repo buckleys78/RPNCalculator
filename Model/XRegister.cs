@@ -31,6 +31,7 @@ namespace RPNCalculator.Model {
 
         // Methods/Functions
         public void AddDigit(string digit) {
+            char chngSignChar = (char)0x00B1; //   +/- symbol
             if (digit.Length != 1) return;
             if (char.IsDigit(digit,0) || (digit == "." && !BufferHasDecimalPoint())) {
                 if (BufferIsEmpty() && !XRegisterIsPlaceholder) {
@@ -39,6 +40,19 @@ namespace RPNCalculator.Model {
                 XRegisterIsPlaceholder = false;
                 NewEntryBuffer += digit;
                 ValueInX = double.Parse(NewEntryBuffer);
+            } else if (digit.CompareTo(chngSignChar.ToString()) == 0) {
+                ValueInX *= -1;
+                if (NewEntryBuffer.Length > 0) {
+                    if (ValueInX < 0) {
+                        if (NewEntryBuffer.Substring(0, 1) != "-") {
+                            NewEntryBuffer = "-" + NewEntryBuffer;
+                        }
+                    } else if (ValueInX > 0) {
+                        if (NewEntryBuffer.Substring(0, 1) == "-") {
+                            NewEntryBuffer = NewEntryBuffer.Substring(1);
+                        }
+                    }
+                }
             }
         }
 

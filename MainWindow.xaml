@@ -52,7 +52,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="btnChangeSign" Content="±" HorizontalAlignment="Left" Height="43" Margin="197,65,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnMultiply_Click" IsEnabled="False"/>
+        <Button x:Name="btnChangeSign" Content="±" HorizontalAlignment="Left" Height="43" Margin="197,65,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnChangeSign_Click"/>
         <Button x:Name="btnExponent" Content="EEX" HorizontalAlignment="Left" Height="43" Margin="197,123,0,0" VerticalAlignment="Top" Width="51" FontSize="24" Click="btnMultiply_Click" IsEnabled="False"/>
 
     </Grid>

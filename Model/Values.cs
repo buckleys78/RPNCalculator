@@ -17,7 +17,20 @@ namespace RPNCalculator.Model {
 
         // Methods/Functions
         public List<string> listOfStackedValues() {
-            return new List<double>(StackedValues).Select(x => x.ToString()).ToList();
+            //return new List<double>(StackedValues).Select(x => x.ToString()).ToList();
+            var stackList = new List<string>();
+            foreach (var value in StackedValues) {
+                string s = "";
+                if (double.IsNegativeInfinity(value)) {
+                    s = "-Inf";
+                } else if (double.IsPositiveInfinity(value)) {
+                    s = "+Inf";
+                } else {
+                    s = value.ToString();
+                }
+                stackList.Add(s);
+            }
+            return stackList;
         }
 
         public int NumberOfValues() {

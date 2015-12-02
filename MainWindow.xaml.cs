@@ -190,6 +190,10 @@ namespace RPNCalculator {
             processNmbrButtonClick(sender);
         }
 
+        private void btnChangeSign_Click(object sender, RoutedEventArgs e) {
+            processNmbrButtonClick(sender);
+        }
+
         // Stack Manipulation
         private void btnSwitchXandY_Click(object sender, RoutedEventArgs e) {
             MemoryStack.SwitchXandY();
@@ -236,5 +240,7 @@ namespace RPNCalculator {
         private void rbSelectTI_Checked(object sender, RoutedEventArgs e) {
             UpdateCalculationMode();
         }
+
+        
     }
 }
